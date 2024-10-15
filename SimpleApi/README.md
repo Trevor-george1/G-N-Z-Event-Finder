@@ -1,7 +1,6 @@
-# Simple API
+# Event finder API
 
-Simple HTTP API for playing with `User` model.
-
+Simple HTTP API for displaying popular `events` in the country
 
 ## Files
 
@@ -9,12 +8,14 @@ Simple HTTP API for playing with `User` model.
 
 - `base.py`: base of all models of the API - handle serialization to file
 - `user.py`: user model
+-  `event.py`: event model
 
 ### `api/v1`
 
 - `app.py`: entry point of the API
 - `views/index.py`: basic endpoints of the API: `/status` and `/stats`
 - `views/users.py`: all users endpoints
+- `views/events.py`: all events endpoints
 
 
 ## Setup
@@ -40,3 +41,21 @@ $ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
 - `DELETE /api/v1/users/:id`: deletes an user based on the ID
 - `POST /api/v1/users`: creates a new user (JSON parameters: `email`, `password`, `last_name` (optional) and `first_name` (optional))
 - `PUT /api/v1/users/:id`: updates an user based on the ID (JSON parameters: `last_name` and `first_name`)
+
+
+- `GET /api/v1/status`: returns the status of the API
+- `GET /api/v1/stats`: returns some stats of the API
+- `GET /api/v1/users`: returns the list of users
+- `GET /api/v1/users/:id`: returns an user based on the ID
+- `DELETE /api/v1/users/:id`: deletes an user based on the ID
+- `POST /api/v1/users`: creates a new user (JSON parameters: `email`, `password`, `last_name` (optional) and `first_name` (optional))
+- `PUT /api/v1/users/:id`: updates an user based on the ID (JSON parameters: `last_name` and `first_name`)
+
+
+- `GET /api/v1/most_liked_events`: returns the list of events arranged according to popularity
+- `GET /api/v1/events`: returns the list of events
+- `GET /api/v1/events/:id`: returns an event based on the ID
+- `DELETE /api/v1/events/:id`: deletes an event based on the ID
+- `POST /api/v1/events`: creates a new event (JSON parameters: `name`, `venue`, `date` (optional))
+- `PUT /api/v1/events/:id`: updates an event based on the ID (JSON parameters: `last_name` and `first_name`)
+- `POST /api/v1/events/id`: user likes an event
