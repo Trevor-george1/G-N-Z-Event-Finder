@@ -13,6 +13,25 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['GNZ']
 event_collection = db['events']
 
+
+@app_views.route('/unauthorized', methods=['GET'], strict_slashes=False)
+def unauth() -> str:
+   """
+    GET /api/v1/unauthorized
+    Return:
+        - error unauthorized
+   """
+   return abort(401)
+
+@app_views.route('/forbidden', methods=['GET'], strict_slashes=False)
+def forbidden() -> str:
+   """
+    GET /api/v1/forbidden
+    Return: 
+        - error forbidden
+   """
+   return abort(403)
+
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status() -> str:
     """ GET /api/v1/status
@@ -67,7 +86,7 @@ def add_likes(event_id):
 def get_most_liked_events():
     pipeline = [
         {"$sort": {"likes": -1}},
-        {"$limit": 5},
+        {"$limit": 10},
         {"$project": {
            "name": "$name",
            "venue": "$venue",
